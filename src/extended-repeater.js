@@ -2,20 +2,23 @@ const CustomError = require("../extensions/custom-error");
 
 module.exports = function repeater(str, options) {
   answer = '';
-  if (options.repeat) {
-    for (let i = 1; i <= options.repeat; i++) {
+  if (options.repeatTimes) {
+    for (let i = 1; i <= options.repeatTimes; i++) {
       if (options.separator) {
-        if (i < options.repeat) {
+        if (i < options.repeatTimes) {
           str += options.separator;
         } else {
           return;
         }
-        
       } else {
-        str += '+';
+        if (i < options.repeatTimes) {
+          str += '+';
+        } else {
+          return;
+        }
       }
       
-      for (let j = 1; j <= options.additionRepeatTimes; i++) {
+      /*for (let j = 1; j <= options.additionRepeatTimes; i++) {
         if (options.addition) {
           if (options.additionSeparator) {
             options.addition += options.additionSeparator;
@@ -25,7 +28,7 @@ module.exports = function repeater(str, options) {
           str += options.addition
         }
         anwer += str;
-      }
+      }*/
       answer += str;
     }
   } else {

@@ -9,28 +9,35 @@ const chainMaker = {
   },
   addLink(value) {
     if (!value) {
-      this.segment.push(`~~(  )`).join('');
+      if (this.segment !== undefined && this.segment.length === 0) {
+        this.segment.push(`~~(  )`).join('');
+      }
     } else {
+      if (this.segment !== undefined && this.segment.length === 0) {
       this.segment.push(`~~( ${value.toString()} )`).join('');
+      }
     }
     return this;
   },
   removeLink(position) {
-    if (position === parseInt(position,10)) {
-      this.segment.splice(position).join('');
-    }else {
+    if (position === parseInt(position, 10)) { 
+      if (this.segment !== undefined && this.segment.length === 0) {
+        this.segment.splice(position).join('');
+      }
+    } else {
       throw new Error('Error');
     }
     
     return this;
   },
   reverseChain() {
-    this.segment.reverse().join('');
+    if (this.segment !== undefined && this.segment.length === 0) {
+      this.segment.reverse().join('');
+    }
     return this;
   },
   finishChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    return this;
   }
 };
 
